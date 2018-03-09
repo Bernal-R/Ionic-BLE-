@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+
+  <ion-title>
+  BLE Test
+  </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="!isConnected">
+    <button ion-button block large icon-left color="primary" (click)="startScanning()">
+      <ion-icon name="bluetooth"></ion-icon>
+      SCAN
+    </button>
+  <br>
+
+    <ion-list>
+      <button ion-item *ngFor="let device of devices" (click)="connectToDevice(device)">
+        {{device.name}}
+      </button>
+      <ion-spinner *ngIf="isScanning==true" name="circles" text-center></ion-spinner>
+    </ion-list>
+  </div>
+  <div *ngIf="isConnected">
+    {{device}}
+
+
+    <div id="resultDiv"></div>
+    <div>
+        <input type="text" id="messageInput" value="Hello"/>
+        <button id="sendButton" (click)="sendData()" >Send</button>
+    </div>
+    <button id="disconnectButton" (click)="disconnect()">Disconnect</button>
+    <p id="demo"></p>
+
+
+  </div>
+
+</ion-content>
